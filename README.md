@@ -18,7 +18,7 @@ Adding automation for Google Workspace user administration can help streamline t
 
 2. Choose an Automation Tool: There are several automation tools available for Google Workspace user administration, such as Google Apps Script, Google Cloud Functions, and third-party tools. This project uses Python and the Google Admin SDK Directory API.
 
-3. Set up Google Workspace: Configure account to allow creating users with [Google Admin SDK Directory API](https://developers.google.com/admin-sdk/directory/v1/quickstart/python). This includes setting up authentication and authorization by creating a service account and granting it the necessary permissions. [See here](https://developers.google.com/workspace/guides/create-credentials#python)
+3. Set up Google Workspace: Configure account to allow creating users with [Google Admin SDK Directory API](https://developers.google.com/admin-sdk/directory/v1/quickstart/python). This includes setting up authentication and authorization by creating a service account and granting it the necessary permissions. [See here](https://developers.google.com/workspace/guides/create-credentials#service-account)
 
 4. Write Scripts: Write scripts to automate the user administration tasks identified in the scope. Ensure that the scripts handle error conditions and are thoroughly tested before deployment.
 
@@ -45,3 +45,11 @@ python3 create_group.py
 ```
 
 !["Create Group"](files/result_auto_create_group.png)
+
+3. Add users to the group.
+
+```bash
+python3 add_users_to_group.py
+```
+
+!["Add Users to Group"](files/result_auto_add_users_to_group.png)
