@@ -36,4 +36,12 @@ See results after executing the plan below.
 python3 create_users_from_csv.py
 ```
 
-<img src="files/result_auto_create_users.png" width="60%" alt="Create Regular Users"/>
+!["Create Regular Users"](files/result_auto_create_users.png)
+
+2. Create a group.
+
+```bash
+python3 create_group.py
+```
+
+!["Create Group"](files/result_auto_create_group.png)
