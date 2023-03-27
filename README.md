@@ -15,6 +15,15 @@ Adding automation for Google Workspace user administration can help streamline t
 
 1. Define the Scope: Determine which aspects of user administration will be automated, such as creating new users, modifying existing users, deleting users, resetting passwords, creating groups, or updating user attributes.
     1. This should include the order in which they should be completed, and any dependencies or prerequisites. For example, this project creates users from a CSV file, creates a group and then adds users to the group.
+    2. It should also include security and compliance requirements as described below.
+        1. The user's account must be set to prompt a mandatory password change upon first use.
+        2. If passwords are distributed using email, then they must be a unique, single-use (one time) password.
+        3. Passwords should meet the following complexity requirements:
+            - At least 8 alphanumeric characters
+            - At least 1 number
+            - At least 1 symbol
+            - At least 1 uppercase letter
+            - At least 1 lowercase letter
 
 2. Choose an Automation Tool: There are several automation tools available for Google Workspace user administration, such as Google Apps Script, Google Cloud Functions, and third-party tools. This project uses Python and the Google Admin SDK Directory API.
 
@@ -33,7 +42,7 @@ See results after executing the plan below.
 1. Create regular users from a CSV file.
 
 ```bash
-python3 create_users_from_csv.py
+python3 sctipts/create_users_from_csv.py
 ```
 
 !["Create Regular Users"](files/result_auto_create_users.png)
@@ -41,7 +50,7 @@ python3 create_users_from_csv.py
 2. Create a group.
 
 ```bash
-python3 create_group.py
+python3 sctipts/create_group.py
 ```
 
 !["Create Group"](files/result_auto_create_group.png)
@@ -49,7 +58,7 @@ python3 create_group.py
 3. Add users to the group.
 
 ```bash
-python3 add_users_to_group.py
+python3 sctipts/add_users_to_group.py
 ```
 
 !["Add Users to Group"](files/result_auto_add_users_to_group.png)

@@ -4,6 +4,10 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from configparser import ConfigParser
 
+import sys
+sys.path.append("helpers")
+from random_password_generator import genrateRandomPassword
+
 # Get config
 config = ConfigParser()
 config.read('config/config.ini')
@@ -33,7 +37,7 @@ with open(csv_path, 'r') as file:
     next(reader)  # Skip header row
     for row in reader:
         # Extract the user data from the CSV row
-        firstname, lastname, password, title = row
+        firstname, lastname, title = row
 
         # Set the user object for the Google Workspace API
         user = {
@@ -42,7 +46,8 @@ with open(csv_path, 'r') as file:
                 'familyName': lastname
             },
             'primaryEmail': firstname + "@" + domain,
-            'password': password,
+            'password': genrateRandomPassword(),
+            'changePasswordAtNextLogin': True, # prompts a mandatory password change upon first use
             'organizations': [
                 {
                     'title': title
@@ -53,9 +58,9 @@ with open(csv_path, 'r') as file:
         try:
             # Create the user using the Google Workspace API
             result = service.users().insert(body=user).execute()
-            
-            # Print the result
-            print("User " + result["primaryEmail"] + " created.")
+
+            # Print the result and Email (one-time) password
+            print("User " + result["primaryEmail"] + " created. Default password: " + user["password"])
 
         except HttpError as err:
             if err.reason == "Entity already exists.":
